@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  randomCoctails();
+})
+
 $('.dropdown-button').dropdown({
   inDuration: 300,
   outDuration: 225,
@@ -99,6 +103,7 @@ function start() {
 //------------------CONSULTAS A LA API THECOCKTAILDB POR FILTRO-------------------//
 let selectFilter;
 let strSelected;
+let anotherDrink = 0;
 
 function fetchByFilter(filter) {
   fetch(`http://www.thecocktaildb.com/api/json/v1/1/list.php?${filter}=list`)
@@ -125,6 +130,29 @@ $('.filtro').mouseover(function() {
   }
   fetchByFilter(f);
 })
+
+function randomCoctails() {
+  fetch('http://www.thecocktaildb.com/api/json/v1/1/random.php')
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      selectedFilter = data.drinks;
+      giveMeACoctail();
+    })
+    .catch((error) => {
+      console.log('Hubo un problema con la operación: ' + error.message);
+    });
+}
+function giveMeACoctail() {
+  if(anotherDrink<5) {
+    $('#slide-out').append(
+      `<li class="recommended"><i class="material-icons">local_bar</i><p class="recommendedLinks">${selectedFilter[0].strDrink}</p></li>`
+    )
+    anotherDrink++
+    randomCoctails();
+  }
+}
 
 function searchByFilter(filter) {
   $('.dropdown-content').empty();
