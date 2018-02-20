@@ -157,11 +157,60 @@ function selectedFilter(filter, strSelected) {
     })
     .then((data) => {
       selectFilter = data.drinks;
-      renderCocktails();
+      console.log(data);
+      renderCocktails()
+
+    })
+}
+
+function fetchCocktailSelected(cocktailSelected) {
+  fetch(`http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailSelected}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      selectFilter = data.drinks[0];
+      cocktailRecipe(cocktailSelected)
     })
     .catch((error) => {
       console.log('Hubo un problema con la operación: ' + error.message);
     });
 }
 
-function renderCocktails() {}
+function renderCocktails() {
+  $('#cocktail').empty();
+  for (let i = 0; i < selectFilter.length; i++) {
+    $('#cocktail').append(`<div class="card"  id="${selectFilter[i].idDrink}">
+	<div class="card-image waves-effect waves-block waves-light">
+		<img class="activator" src="https://${selectFilter[i].strDrinkThumb}"/>
+	</div><div class="card-content">
+		<span class="card-title activator grey-text text-darken-4">${selectFilter[i].strDrink}<i class="material-icons right">more_vert</i></span>
+	</div>
+	<div class="card-reveal ${selectFilter[i].idDrink}">
+		<span class="card-title grey-text text-darken-4">${selectFilter[i].strDrink}<i class="material-icons right">close</i></span>
+	</div>
+</div>`)
+  }
+  $('.card').click(function() {
+    let cocktailSelected = this.id;
+    fetchCocktailSelected(cocktailSelected);
+  })
+}
+
+function cocktailRecipe(cocktailSelected) {
+  $(`.cocktailDescription.${cocktailSelected}`).remove();
+  //Sacamos en un array los ingredientes del cocktail
+  let ingredient = [];
+  let j = 1;
+  let html = '';
+  for (let i in selectFilter) {
+    if (i === `strIngredient${j}` && selectFilter[i] !== "" && selectFilter[i] !== null) {
+      ingredient.push(selectFilter[i]);
+      j++;
+    }
+  }
+  for (let i = 0; i < ingredient.length; ++i) {
+    html += `<li>${ingredient[i]}</li>`;
+  }
+  $(`.card-reveal.${cocktailSelected}`).append(`<div class="cocktailDescription ${cocktailSelected}"><h4>Ingredients</h4><ul>${html}</ul><h4>Instruction</h4><p>${selectFilter.strInstructions}</p></div>`)
+}
