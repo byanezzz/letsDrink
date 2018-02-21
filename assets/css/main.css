@@ -14,13 +14,17 @@ body {
   display: inline-block;
   vertical-align: 5px;
   font-size: 1.2rem;
-  margin-left: .5em;
+  margin: 0 .5em !important;
 }
 .star, .dare-text:hover {
   cursor: default;
 }
+#slide-out {
+  background: linear-gradient(#0D1C31, #8B46B9);
+  color: rgb(255, 255, 255);
+}
 .recommended {
-  padding-left: 1.5em;
+  padding: 0 1.5em;
 }
 .recommended:hover{
   color: rgb(168, 42, 168);
@@ -33,6 +37,18 @@ body {
   font-size: 1.2rem !important;
   vertical-align: 5px;
 }
+.glass {
+  vertical-align: 5px;
+  margin-left: .6em;
+  color: rgb(255, 255, 255) !important;
+}
 a:hover {
   background-color: transparent !important;
+}
+#search {
+  background-color: rgba(255, 255, 255, .1) !important;
+}
+input:focus {
+  border-bottom: 1px solid rgb(168, 42, 168) !important;
+  box-shadow: 0 1px 0 0 rgb(168, 42, 168) !important;
 }
