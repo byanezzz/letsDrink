@@ -14,42 +14,38 @@
 </head>
 
 <body>
-  <div class="container">
-    <section>
-      <!-- SideNav -->
-      <ul id="slide-out" class="side-nav fixed">
-        <li>
-          <div class="user-view">
-            <div class="background grey lighten-5"></div>
-            <a href="#!user"><img class="logo" src="assets/img/Let's drink.svg"></a>
-          </div>
-        </li>
-        <li><i class="material-icons star">star</i>
-          <p class="dare-text"><b>Dare</b> with our recommended</p>
-        </li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <li>
-          <div class="nav-wrapper">
-            <form>
-              <div class="input-field">
-                <input id="search" type="search" required>
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-              </div>
-            </form>
-          </div>
-        </li>
-        <!-- <li><a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a></li> -->
-      </ul>
-    </section>
-    <section>
-      <div id="formLogin ">
-        <div class="row logoLogin">
-          <div class="col m5 offset-m4">
-            <img class="" alt="" src="">
-          </div>
+  <section>
+    <!-- SideNav -->
+    <ul id="slide-out" class="side-nav fixed">
+      <li>
+        <div class="user-view">
+          <a href="#!user"><img class="logo" src="assets/img/Let's drink.svg"></a>
+        </div>
+      </li>
+      <li>
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" placeholder="Search for a Drink?" required>
+              <label class="label-icon" for="search"><i class="material-icons glass">search</i></label>
+            </div>
+          </form>
+        </div>
+      </li>
+      <li><i class="material-icons star">star</i>
+        <p class="dare-text"><b>Dare</b> with our recommended</p>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <!-- <li><a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a></li> -->
+    </ul>
+  </section>
+  <!-- <section>
+    <div id="formLogin ">
+      <div class="row logoLogin">
+        <div class="col m5 offset-m4">
+          <img class="" alt="" src="">
         </div>
       </div>
       <div class="container">
@@ -111,13 +107,13 @@
           </div>
         </div>
       </div>
-    </section> -->
-    <div>
-      <button class='dropdown-button btn filtro' id="categories" href='#' data-activates='dropdown1'>Categoría</button>
-      <!-- Dropdown Structure -->
-      <ul id='dropdown1' class='dropdown-content'></ul>
-    </div>
-    <section id="cocktail"></section>
+  </section> -->
+  <div>
+    <button class='dropdown-button btn filtro' id="categories" href='#' data-activates='dropdown1'>Categoría</button>
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'></ul>
+  </div>
+  <section id="cocktail"></section>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>

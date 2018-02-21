@@ -46,7 +46,7 @@ var uid = ""; */
   var auth = firebase.auth();
   $('#emailRegister').val("");
   $('#passwordRegister').val("");
- 
+
   var promise = auth.createUserWithEmailAndPassword(email, pass)
     .then(function(user) {
       console.log(user);
@@ -105,6 +105,28 @@ let selectFilter;
 let strSelected;
 let anotherDrink = 0;
 
+function fetchByName(coctelName) {
+  fetch(`http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${coctelName}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      selectFilter = data.drinks;
+      renderCocktails()
+    })
+    .catch((error) => {
+      console.log('Hubo un problema con la operación: ' + error.message);
+    })
+}
+$('#search').keydown(function(event) {
+  if (event.which == 13) {
+    let coctelName = $('#search').val();
+    event.preventDefault();
+    fetchByName(coctelName);
+    $('#search').val('');
+  };
+});
+
 function fetchByFilter(filter) {
   fetch(`http://www.thecocktaildb.com/api/json/v1/1/list.php?${filter}=list`)
     .then((response) => {
@@ -148,12 +170,17 @@ function randomCoctails() {
 function giveMeACoctail() {
   if (anotherDrink < 5) {
     $('#slide-out').append(
-      `<li class="recommended"><i class="material-icons">local_bar</i><p class="recommendedLinks">${selectedFilter[0].strDrink}</p></li>`
+      `<li class="recommended truncate" id="${selectedFilter[0].strDrink}"><i class="material-icons">local_bar</i><p class="recommendedLinks">${selectedFilter[0].strDrink}</p></li>`
     )
     anotherDrink++
     randomCoctails();
   }
+  $('.recommended').click(function(e) {
+    let randomSelected = e.currentTarget.id;
+    fetchByName(randomSelected);
+  })
 }
+
 
 function fetchSelectedFilter(filter, strSelected) {
   fetch(`http://www.thecocktaildb.com/api/json/v1/1/filter.php?${filter}=${strSelected}`)
