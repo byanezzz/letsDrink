@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
-
 <body>
   <section>
     <!-- SideNav -->
@@ -38,7 +37,7 @@
       <li>
         <div class="divider"></div>
       </li>
-      <!-- <li><a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a></li> -->
+      <li><a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/"></a></li>
     </ul>
   </section>
   <!-- <section>
@@ -108,18 +107,38 @@
         </div>
       </div>
   </section> -->
-  <div>
-    <button class='dropdown-button btn filtro' id="categories" href='#' data-activates='dropdown1'>Categoría</button>
-    <!-- Dropdown Structure -->
-    <ul id='dropdown1' class='dropdown-content'></ul>
-  </div>
-  <section id="cocktail"></section>
+  <section class="open-bar">
+    <div class="row">
+      <div class="col l4">
+        <button class='dropdown-button btn filtro' id="categories" href='#' data-activates='dropdown1'>Drinks by category</button>
+<!--         <button><a data-pin-do="buttonPin" data-pin-count="above" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Fwww.thecocktaildb.com%2Fimages%2Fmedia%2Fdrink%2Frrtssw1472668972.jpg&description=Next%20stop%3A%20Pinterest">save</a></button>
+        <button><a data-pin-do="buttonBookmark" data-pin-custom="true" data-pin-tall="true" data-pin-round="true" data-pin-log="button_pinit_bookmarklet" data-pin-href="https://www.pinterest.com/pin/create/button/" href="https://www.pinterest.com/pin/create/button/"><img src="https://i.pinimg.com/originals/d8/28/ba/d828ba7f6d248ed4206ba6a7031be7d7.jpg" height="25"/></a></button> -->
+        <ul id='dropdown1' class='dropdown-content'></ul>
+      </div>
+      <div class="col l4">
+        <button class='dropdown-button btn filtro' id="glasses" href='#' data-activates='dropdown1'>Drinks by glasses</button>
+        <ul id='dropdown1' class='dropdown-content'></ul>
+      </div>
+      <div class="col l4">
+        <button class='dropdown-button btn filtro' id="alcoholic" href='#' data-activates='dropdown1'>Drinks by presence of alcohol</button>
+        <ul id='dropdown1' class='dropdown-content'></ul>
+      </div>
+    </div>
+    <div class="drinks-container">
+      <div class="row" id="cocktail">
+        <div class="welcome-text center valign-wrapper">
+          <h3>Welcome to <b>Let's Drink</b>! Look for a drink searching by it's name, taking one of our recommended or exploring in our filters. <b>Enjoy</b> with responsability.</h3>
+        </div>
+      </div>
+    </div>
+  </section>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="assets/js/app.js"></script>
+  <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
 
 </html>

@@ -237,11 +237,11 @@ function fetchCocktailSelected(cocktailSelected) {
 function renderCocktails() {
   $('#cocktail').empty();
   for (let i = 0; i < selectFilter.length; i++) {
-    $('#cocktail').append(`<div class="card"  id="${selectFilter[i].idDrink}">
+    $('#cocktail').append(`<div class="col l3 card"  id="${selectFilter[i].idDrink}">
 	<div class="card-image waves-effect waves-block waves-light">
 		<img class="activator" src="https://${selectFilter[i].strDrinkThumb}"/>
 	</div><div class="card-content">
-		<span class="card-title activator grey-text text-darken-4">${selectFilter[i].strDrink}<i class="material-icons right">more_vert</i></span>
+		<span class="card-title activator truncate grey-text text-darken-4">${selectFilter[i].strDrink}<i class="material-icons right">more_vert</i></span>
 	</div>
 	<div class="card-reveal ${selectFilter[i].idDrink}">
 		<span class="card-title grey-text text-darken-4">${selectFilter[i].strDrink}<i class="material-icons right">close</i></span>

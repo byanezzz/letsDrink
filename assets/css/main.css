@@ -41,7 +41,6 @@ body {
 .recommended:hover {
   color: rgb(168, 42, 168);
   cursor: pointer;
-  border: 1px dotted gray;
 }
 
 .recommendedLinks {
@@ -68,4 +67,17 @@ a:hover {
 input:focus {
   border-bottom: 1px solid rgb(168, 42, 168) !important;
   box-shadow: 0 1px 0 0 rgb(168, 42, 168) !important;
+}
+#cocktail {
+  margin: 0 !important;
+}
+.open-bar {
+  width: 84%;
+  margin-left: 16%;
+}
+.welcome-text {
+  height: 94vh;
+  color: white;
+  background-color: purple;
+  padding: 11.4em;
 }
