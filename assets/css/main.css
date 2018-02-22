@@ -18,10 +18,8 @@ body {
 }
 
 .dare-text {
-  display: inline-block;
-  vertical-align: 5px;
   font-size: 1.2rem;
-  margin: 0 .5em !important;
+  margin: 0 1em !important;
 }
 
 .star,
@@ -32,6 +30,10 @@ body {
 #slide-out {
   background: linear-gradient(#0D1C31, #8B46B9);
   color: rgb(255, 255, 255);
+  width: 16% !important;
+}
+.side-nav li {
+  line-height: 2.5rem !important;
 }
 
 .recommended {
@@ -51,7 +53,8 @@ body {
 }
 
 .glass {
-  vertical-align: 5px;
+  position: absolute;
+  bottom: .8em;
   margin-left: .6em;
   color: rgb(255, 255, 255) !important;
 }
@@ -89,6 +92,10 @@ input:focus {
   background-color:#b62ee059;
   padding: 0 11.8em;
 }
+.drink-name {
+  width: 84%;
+  display: inline-block;
+}
 .open-bar .row {
   margin: 0 !important;
 }
@@ -104,14 +111,18 @@ input:focus {
   background-color: #111e38;
   border-right: .5px solid white;
 }
-.filtro:hover, #logOut:hover {
-  background-color:  #111e38;
-  color:  rgb(168, 42, 168);
+.filtro:hover, .filtro:focus, #logOut:hover, #logOut:focus, .strSelect a:hover {
+  background-color:  #111e38 !important;
+  color:  rgb(168, 42, 168) !important;
+}
+.strSelect a {
+  color: white !important;
+  background-color: #111e38;
 }
 #logOut {
   width: 100%;
   position: absolute;
-  bottom: 60px;
+  bottom: 6%;
   background-color: #0D1C31;
   border: none;
   font-size: 1.2rem;

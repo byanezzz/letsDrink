@@ -205,12 +205,12 @@ function searchByFilter(filter) {
   } else if (filter === 'g') {
     for (let i = 0; i < selectFilter.length; i++) {
       $('.dropdown-content').append(
-        `<li class ="strSelect" id="${selectFilter[i].strGlass}><a href="#!">${selectFilter[i].strGlass}</a></li>`)
+        `<li class ="strSelect" id="${selectFilter[i].strGlass}"><a href="#!">${selectFilter[i].strGlass}</a></li>`)
     }
   } else if (filter === 'a') {
     for (let i = 0; i < selectFilter.length; i++) {
       $('.dropdown-content').append(
-        `<li class ="strSelect" id="${selectFilter[i].strAlcoholic}><a href="#!">${selectFilter[i].strAlcoholic}</a></li>`)
+        `<li class ="strSelect" id="${selectFilter[i].strAlcoholic}"><a href="#!">${selectFilter[i].strAlcoholic}</a></li>`)
     }
   }
   $('.strSelect').click((e) => {
@@ -241,7 +241,7 @@ function renderCocktails() {
 	<div class="card-image waves-effect waves-block waves-light">
 		<img class="activator" src="https://${selectFilter[i].strDrinkThumb}"/>
 	</div><div class="card-content">
-		<span class="card-title activator truncate grey-text text-darken-4">${selectFilter[i].strDrink}<i class="material-icons right">more_vert</i></span>
+		<span class="card-title activator grey-text text-darken-4"><p class="drink-name truncate">${selectFilter[i].strDrink}</p><i class="material-icons right">more_vert</i></span>
 	</div>
 	<div class="card-reveal ${selectFilter[i].idDrink}">
 		<span class="card-title grey-text text-darken-4">${selectFilter[i].strDrink}<i class="material-icons right">close</i></span>
