@@ -62,6 +62,7 @@ a:hover {
 
 #search {
   background-color: rgba(255, 255, 255, .1) !important;
+  color: white;
 }
 
 input:focus {
@@ -70,14 +71,49 @@ input:focus {
 }
 #cocktail {
   margin: 0 !important;
+  height: 96.2vh;
+  background-color: rgba(69, 50, 110, 0.5);
 }
 .open-bar {
   width: 84%;
   margin-left: 16%;
 }
+.background {
+  height: 96.2vh;
+  background-image: url(../img/cheers.jpg);
+  background-size: cover;
+}
 .welcome-text {
-  height: 94vh;
+  height: 96.2vh;
   color: white;
-  background-color: purple;
-  padding: 11.4em;
+  background-color:#b62ee059;
+  padding: 0 11.8em;
+}
+.open-bar .row {
+  margin: 0 !important;
+}
+.open-bar .row .col {
+  padding: 0 !important;
+}
+.card {
+  margin: 0;
+}
+.filtro {
+  width: 100%;
+  border-radius: 0 !important;
+  background-color: #111e38;
+  border-right: .5px solid white;
+}
+.filtro:hover, #logOut:hover {
+  background-color:  #111e38;
+  color:  rgb(168, 42, 168);
+}
+#logOut {
+  width: 100%;
+  position: absolute;
+  bottom: 60px;
+  background-color: #0D1C31;
+  border: none;
+  font-size: 1.2rem;
+  height: 5%;
 }
