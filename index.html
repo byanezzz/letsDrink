@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
   <title>Let's Drink!</title>
   <link rel="icon" href="assets/img/Let's drink.svg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,6 +12,70 @@
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Welcome to Let's Drink!</h4>
+        <p>To enjoy all our content, please Sign in or Register. It's free!</p>
+      </div>
+      <div class="row">
+          <div class="col s12">
+            <ul class="tabs tabs-fixed-width">
+              <li class="tab col s3"><a class="active" href="#test1">Sign in</a></li>
+              <li class="tab col s3"><a href="#test2">Register</a></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">
+            <div class="container">
+              <form>
+                <div class="row">
+                  <div class="input-field col s9">
+                    <input id="emailLogin" type="email" class="validate">
+                    <label for="emailLogin">Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s9">
+                    <input id="passwordLogin" type="password" class="validate">
+                    <label for="passwordLogin">Password</label>
+                  </div>
+                </div>
+              </form>
+              <button id"logIn" class="form-btn"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Sign in</a></button>
+            </div>
+          </div>
+          <div id="test2" class="col s12">
+            <div class="container">
+              <form>
+                <div class="row">
+                  <div class="input-field col s9">
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name">Name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s9">
+                    <input id="emailRegister" type="email" class="validate">
+                    <label for="emailRegister">Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s9">
+                    <input id="passwordRegister" type="password" class="validate">
+                    <label for="passwordRegister">Password</label>
+                  </div>
+                </div>
+                <p>
+                  <input type="checkbox" id="older" />
+                  <label for="older">Are you older than 18?</label>
+                </p>
+              </form>
+              <button id="register" class="form-btn"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Register</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <section>
     <!-- SideNav -->
     <ul id="slide-out" class="side-nav fixed">
@@ -39,73 +102,6 @@
       <button id="logOut">LOG OUT</button>
     </ul>
   </section>
-  <!-- <section>
-    <div id="formLogin ">
-      <div class="row logoLogin">
-        <div class="col m5 offset-m4">
-          <img class="" alt="" src="">
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col m6 offset-m3 s12">
-            <div class="panel panel-login">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col s6">
-                    <a href="#" class="active" id="login-form-link">Iniciar Sesión</a>
-                  </div>
-                  <div class="col s6">
-                    <a href="#" id="register-form-link">Registrarse</a>
-                  </div>
-                </div>
-                <hr>
-              </div>
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col lg12">
-                    <form id="login-form" role="form" style="display: block;">
-                      <div class="input-field">
-                        <input type="text" name="email" id="emailLogin" tabindex="1" class="form-control" placeholder="Email" value="">
-                      </div>
-                      <div class="input-field">
-                        <input type="password" name="pass" id="passwordLogin" tabindex="2" class="form-control" placeholder="Contraseña">
-                      </div>
-                      <div class="input-field text-center">
-                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                        <label for="remember"> Soy mayor de 18 años</label>
-                      </div>
-                      <div class="input-field">
-                        <div class="row">
-                          <div class="col s6 offset-s3">
-                            <button name="login-submit" id="logIn" tabindex="4" class="form-control btn btn-login btn-primary">Login</button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                    <form id="register-form" action="" method="" role="form" style="display: none;">
-                      <div class="input-field">
-                        <input type="email" name="emailRegister" id="emailRegister" tabindex="1" class="form-control" placeholder="Email Address" value="">
-                      </div>
-                      <div class="input-field">
-                        <input type="password" name="passwordRegister" id="passwordRegister" tabindex="2" class="form-control" placeholder="Password">
-                      </div>
-                      <div class="input-field">
-                        <div class="row">
-                          <div class="col s6 offset-s3">
-                            <button data-toggle="modal" data-target="#squarespaceModal" type="button" name="register-submit" id="register" tabindex="4" class="form-control btn btn-register btn-primary">Regístrate ahora</button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </section> -->
   <section class="open-bar">
     <div class="row">
       <div class="col l4">
@@ -138,7 +134,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="assets/js/app.js"></script>
-  <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+  <!-- <script async defer src="//assets.pinterest.com/js/pinit.js"></script> -->
 </body>
 
 </html>

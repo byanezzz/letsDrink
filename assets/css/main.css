@@ -128,3 +128,37 @@ input:focus {
   font-size: 1.2rem;
   height: 5%;
 }
+.btn-flat {
+  color: #0c1931;  
+}
+.form-btn, #test1, #test2 {
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+.modal {
+  max-height: 90%;
+  background-color: #111e38;
+  color: #FFF;
+}
+.modal-header {
+  padding: 2em 3em;
+}
+.tabs {
+  background-color: #0c1931;
+}
+.tabs .tab a {
+  color: rgba(255, 255, 255, .5)
+}
+.tabs .tab a:hover {
+  color: #FFF !important;
+}
+.tabs .tab .active {
+  color: rgb(255, 255, 255) !important;
+}
+.tabs .indicator {
+  background-color: #FFF; 
+}
+[type="checkbox"]:checked+label:before {
+  border-right-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(255, 255, 255);
+}

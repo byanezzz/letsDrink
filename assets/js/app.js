@@ -1,5 +1,26 @@
 $(document).ready(function() {
   randomCoctails();
+  $('ul.tabs').tabs();
+  $('.modal').modal({
+    dismissible: false, 
+    opacity: .8,
+    endingTop: '5%',
+    endingBottom: '10%',
+  });
+  $('.modal').modal('open');
+
+  //-------INICIALIZANDO Firebase------------------//
+  var config = {
+    apiKey: "AIzaSyBnXR6kFDHMqSuKkRpUjDVozxtoVaboOs0",
+    authDomain: "ourapp-ea016.firebaseapp.com",
+    databaseURL: "https://ourapp-ea016.firebaseio.com",
+    projectId: "ourapp-ea016",
+    storageBucket: "ourapp-ea016.appspot.com",
+    messagingSenderId: "65213460679"
+  };
+  firebase.initializeApp(config);
+  
+  var uid = "";
 })
 
 $('.dropdown-button').dropdown({
@@ -13,25 +34,15 @@ $('.dropdown-button').dropdown({
   stopPropagation: false // Stops event propagation
 });
 
-//-------INICIALIZANDO Firebase------------------//
-/* var config = {
-  apiKey: "AIzaSyBnXR6kFDHMqSuKkRpUjDVozxtoVaboOs0",
-  authDomain: "ourapp-ea016.firebaseapp.com",
-  databaseURL: "https://ourapp-ea016.firebaseio.com",
-  projectId: "ourapp-ea016",
-  storageBucket: "ourapp-ea016.appspot.com",
-  messagingSenderId: "65213460679"
-};
-firebase.initializeApp(config);
-
-var uid = ""; */
 //-----------------AUTENTICACIÓN DE EMAIL---------------------//
-/* $('#logIn').click(function() {
+$('#logIn').click(function() {
   const email = $('#emailLogin').val();
   const pass = $('#passwordLogin').val();
   const auth = firebase.auth();
   $('#emailLogin').val("");
   $('#passwordLogin').val("");
+  $('#emailLogin').removeClass("valid");
+  $('#passwordLogin').removeClass("valid");
   
   var promise = auth.signInWithEmailAndPassword(email, pass)
     .then(function(user) {
@@ -39,20 +50,23 @@ var uid = ""; */
     })
     .catch(e => console.log(e.message));
 });
- */
-/* $('#register').click(function() {
+
+$('#register').click(function() {
   var email = $('#emailRegister').val();
   var pass = $('#passwordRegister').val();
   var auth = firebase.auth();
   $('#emailRegister').val("");
+  $('#emailRegister').removeClass("valid");
   $('#passwordRegister').val("");
+  $('#passwordRegister').removeClass("valid");
+  $('#first_name').val("");
+  $('#first_name').removeClass("valid");
 
   var promise = auth.createUserWithEmailAndPassword(email, pass)
     .then(function(user) {
       console.log(user);
     })
     .catch(function(error) {
-      
       const errorCode = error.code;
       const errorMessage = error.message;
       if (errorCode == 'auth/weak-password') {
@@ -62,24 +76,28 @@ var uid = ""; */
       }
       console.log(error);
     });
-}); */
-/* $('#logOut').click(function() {
+});
+$('#logOut').click(function() {
   firebase.auth().signOut();
   uid = "";
-}); */
+  $('.modal').modal({
+    dismissible: false, 
+    opacity: .8,
+  });
+  $('.modal').modal('open');
+});
 
 //Se mantiene escuchando cualquier cambio en el estado del usuario en tiempo real
-/* firebase.auth().onAuthStateChanged(firebaseUser => {
+firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser) {
     console.log(firebaseUser);
     uid = firebaseUser.uid;
     start();
   } else {
     console.log('no logueado');
-    stop(); */
-//$('#logOut').classList.add('hide');
-/*   }
-}); */
+    stop();
+  }
+});
 //----------------ANIMACIÓN LOGIN/REGISTER--------------------//
 $('#login-form-link').click(function(e) {
   $("#login-form").delay(100).fadeIn(100);
@@ -103,7 +121,7 @@ function start() {
 //------------------CONSULTAS A LA API THECOCKTAILDB POR FILTRO-------------------//
 let selectFilter;
 let strSelected;
-let anotherDrink = 0;
+let anotherDrink;
 
 function fetchByName(coctelName) {
   fetch(`http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${coctelName}`)
@@ -168,6 +186,7 @@ function randomCoctails() {
 }
 
 function giveMeACoctail() {
+  anotherDrink = 0;
   if (anotherDrink < 5) {
     $('#slide-out').append(
       `<li class="recommended truncate" id="${selectedFilter[0].strDrink}"><i class="material-icons">local_bar</i><p class="recommendedLinks">${selectedFilter[0].strDrink}</p></li>`
@@ -209,8 +228,10 @@ function searchByFilter(filter) {
     }
   } else if (filter === 'a') {
     for (let i = 0; i < selectFilter.length; i++) {
-      $('.dropdown-content').append(
-        `<li class ="strSelect" id="${selectFilter[i].strAlcoholic}"><a href="#!">${selectFilter[i].strAlcoholic}</a></li>`)
+      if(selectFilter[i].strAlcoholic !== null) {
+        $('.dropdown-content').append(
+          `<li class ="strSelect" id="${selectFilter[i].strAlcoholic}"><a href="#!">${selectFilter[i].strAlcoholic}</a></li>`)
+      }
     }
   }
   $('.strSelect').click((e) => {
