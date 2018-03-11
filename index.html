@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
+
 <body>
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -19,63 +20,63 @@
         <p>To enjoy all our content, please Sign in or Register. It's free!</p>
       </div>
       <div class="row">
-          <div class="col s12">
-            <ul class="tabs tabs-fixed-width">
-              <li class="tab col s3"><a class="active" href="#test1">Sign in</a></li>
-              <li class="tab col s3"><a href="#test2">Register</a></li>
-            </ul>
+        <div class="col s12">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab col s3"><a class="active" href="#test1">Sign in</a></li>
+            <li class="tab col s3"><a href="#test2">Register</a></li>
+          </ul>
+        </div>
+        <div id="test1" class="col s12">
+          <div class="container">
+            <form>
+              <div class="row">
+                <div class="input-field col s9">
+                  <input id="emailLogin" type="email" class="validate" required>
+                  <label for="emailLogin">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s9">
+                  <input id="passwordLogin" type="password" class="validate" required>
+                  <label for="passwordLogin">Password</label>
+                </div>
+              </div>
+            </form>
+            <button type="button" class="form-btn"><a href="#!" id="logIn" type="button" class="btn-form modal-action waves-effect waves-green btn-flat">Sign in</a></button>
           </div>
-          <div id="test1" class="col s12">
-            <div class="container">
-              <form>
-                <div class="row">
-                  <div class="input-field col s9">
-                    <input id="emailLogin" type="email" class="validate">
-                    <label for="emailLogin">Email</label>
-                  </div>
+        </div>
+        <div id="test2" class="col s12">
+          <div class="container">
+            <form>
+              <div class="row">
+                <div class="input-field col s9">
+                  <input id="first_name" type="text" class="validate">
+                  <label for="first_name">Name</label>
                 </div>
-                <div class="row">
-                  <div class="input-field col s9">
-                    <input id="passwordLogin" type="password" class="validate">
-                    <label for="passwordLogin">Password</label>
-                  </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s9">
+                  <input id="emailRegister" type="email" class="validate" required>
+                  <label for="emailRegister">Email</label>
                 </div>
-              </form>
-              <button id"logIn" class="form-btn"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Sign in</a></button>
-            </div>
-          </div>
-          <div id="test2" class="col s12">
-            <div class="container">
-              <form>
-                <div class="row">
-                  <div class="input-field col s9">
-                    <input id="first_name" type="text" class="validate">
-                    <label for="first_name">Name</label>
-                  </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s9">
+                  <input id="passwordRegister" type="password" class="validate" required>
+                  <label for="passwordRegister">Password</label>
                 </div>
-                <div class="row">
-                  <div class="input-field col s9">
-                    <input id="emailRegister" type="email" class="validate">
-                    <label for="emailRegister">Email</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s9">
-                    <input id="passwordRegister" type="password" class="validate">
-                    <label for="passwordRegister">Password</label>
-                  </div>
-                </div>
-                <p>
-                  <input type="checkbox" id="older" />
-                  <label for="older">Are you older than 18?</label>
-                </p>
-              </form>
-              <button id="register" class="form-btn"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Register</a></button>
-            </div>
+              </div>
+              <p>
+                <input type="checkbox" id="older" />
+                <label for="older">Are you older than 18?</label>
+              </p>
+            </form>
+            <button type="button" class="form-btn"><a href="#!" id="register" type="button"  class="btn-form modal-action waves-effect waves-green btn-flat">Register</a></button>
           </div>
         </div>
       </div>
     </div>
+  </div>
   <section>
     <!-- SideNav -->
     <ul id="slide-out" class="side-nav fixed">
@@ -94,11 +95,12 @@
           </form>
         </div>
       </li>
-      <li><p class="dare-text"><b>Dare</b> with our recommended</p></li>
+      <li>
+        <p class="dare-text"><b>Dare</b> with our recommended</p>
+      </li>
       <li>
         <div class="divider"></div>
       </li>
-<!--       <button><a data-pin-do="buttonBookmark" data-pin-custom="true" data-pin-tall="true" data-pin-round="true" data-pin-log="button_pinit_bookmarklet" data-pin-href="https://www.pinterest.com/pin/create/button/" href="https://www.pinterest.com/pin/create/button/"><img src="https://i.pinimg.com/originals/d8/28/ba/d828ba7f6d248ed4206ba6a7031be7d7.jpg" height="25"/></a></button> -->
       <button id="logOut">LOG OUT</button>
     </ul>
   </section>
@@ -106,7 +108,6 @@
     <div class="row">
       <div class="col l4">
         <button class='dropdown-button btn filtro' id="categories" href='#' data-activates='dropdown1'>Drinks by category</button>
-<!--         <button><a data-pin-do="buttonPin" data-pin-count="above" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Fwww.thecocktaildb.com%2Fimages%2Fmedia%2Fdrink%2Frrtssw1472668972.jpg&description=Next%20stop%3A%20Pinterest">save</a></button> -->
         <ul id='dropdown1' class='dropdown-content'></ul>
       </div>
       <div class="col l4">
@@ -134,7 +135,6 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="assets/js/app.js"></script>
-  <!-- <script async defer src="//assets.pinterest.com/js/pinit.js"></script> -->
 </body>
 
 </html>

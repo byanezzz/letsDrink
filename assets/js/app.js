@@ -1,27 +1,26 @@
-$(document).ready(function() {
-  randomCoctails();
-  $('ul.tabs').tabs();
-  $('.modal').modal({
-    dismissible: false, 
-    opacity: .8,
-    endingTop: '5%',
-    endingBottom: '10%',
-  });
-  $('.modal').modal('open');
+$(document).ready(function() {})
+$('ul.tabs').tabs();
+$('.modal').modal({
+  dismissible: false,
+  opacity: .8,
+  endingTop: '5%',
+  endingBottom: '5%',
+});
 
-  //-------INICIALIZANDO Firebase------------------//
-  var config = {
-    apiKey: "AIzaSyBnXR6kFDHMqSuKkRpUjDVozxtoVaboOs0",
-    authDomain: "ourapp-ea016.firebaseapp.com",
-    databaseURL: "https://ourapp-ea016.firebaseio.com",
-    projectId: "ourapp-ea016",
-    storageBucket: "ourapp-ea016.appspot.com",
-    messagingSenderId: "65213460679"
-  };
-  firebase.initializeApp(config);
-  
-  var uid = "";
-})
+
+//-------INICIALIZANDO Firebase------------------//
+var config = {
+  apiKey: "AIzaSyBnXR6kFDHMqSuKkRpUjDVozxtoVaboOs0",
+  authDomain: "ourapp-ea016.firebaseapp.com",
+  databaseURL: "https://ourapp-ea016.firebaseio.com",
+  projectId: "ourapp-ea016",
+  storageBucket: "ourapp-ea016.appspot.com",
+  messagingSenderId: "65213460679"
+};
+firebase.initializeApp(config);
+
+var uid = "";
+
 
 $('.dropdown-button').dropdown({
   inDuration: 300,
@@ -41,9 +40,9 @@ $('#logIn').click(function() {
   const auth = firebase.auth();
   $('#emailLogin').val("");
   $('#passwordLogin').val("");
-  $('#emailLogin').removeClass("valid");
-  $('#passwordLogin').removeClass("valid");
-  
+  $('#emailLogin').removeClass("validate");
+  $('#passwordLogin').removeClass("validate");
+
   var promise = auth.signInWithEmailAndPassword(email, pass)
     .then(function(user) {
       console.log(user);
@@ -56,11 +55,11 @@ $('#register').click(function() {
   var pass = $('#passwordRegister').val();
   var auth = firebase.auth();
   $('#emailRegister').val("");
-  $('#emailRegister').removeClass("valid");
+  $('#emailRegister').removeClass("validate");
   $('#passwordRegister').val("");
-  $('#passwordRegister').removeClass("valid");
+  $('#passwordRegister').removeClass("validate");
   $('#first_name').val("");
-  $('#first_name').removeClass("valid");
+  $('#first_name').removeClass("validate");
 
   var promise = auth.createUserWithEmailAndPassword(email, pass)
     .then(function(user) {
@@ -81,10 +80,10 @@ $('#logOut').click(function() {
   firebase.auth().signOut();
   uid = "";
   $('.modal').modal({
-    dismissible: false, 
+    dismissible: false,
     opacity: .8,
   });
-  $('.modal').modal('open');
+
 });
 
 //Se mantiene escuchando cualquier cambio en el estado del usuario en tiempo real
@@ -115,13 +114,34 @@ $('#register-form-link').click(function(e) {
 });
 //Al iniciar sesión
 function start() {
-  //$('#formLogin').addClass('hide');
+  console.log('logueado');
+  randomCoctails();
+  $('#search').keydown(function(event) {
+    if (event.which == 13) {
+      let coctelName = $('#search').val();
+      event.preventDefault();
+      fetchByName(coctelName);
+      $('#search').val('');
+    };
+  });
+  $('.filtro').click(function() {
+      let f;
+      if (this.id === 'categories') {
+        f = 'c';
+      } else if (this.id === 'glasses') {
+        f = 'g';
+      } else if (this.id === 'alcoholic') {
+        f = 'a';
+      }
+      fetchByFilter(f);
+    })
+    //$('#formLogin').addClass('hide');
 }
 
 //------------------CONSULTAS A LA API THECOCKTAILDB POR FILTRO-------------------//
 let selectFilter;
 let strSelected;
-let anotherDrink;
+let anotherDrink = 0;
 
 function fetchByName(coctelName) {
   fetch(`http://www.thecocktaildb.com/api/json/v1/1/search.php?s=${coctelName}`)
@@ -136,14 +156,7 @@ function fetchByName(coctelName) {
       console.log('Hubo un problema con la operación: ' + error.message);
     })
 }
-$('#search').keydown(function(event) {
-  if (event.which == 13) {
-    let coctelName = $('#search').val();
-    event.preventDefault();
-    fetchByName(coctelName);
-    $('#search').val('');
-  };
-});
+
 
 function fetchByFilter(filter) {
   fetch(`http://www.thecocktaildb.com/api/json/v1/1/list.php?${filter}=list`)
@@ -158,18 +171,6 @@ function fetchByFilter(filter) {
       console.log('Hubo un problema con la operación: ' + error.message);
     });
 }
-
-$('.filtro').click(function() {
-  let f;
-  if (this.id === 'categories') {
-    f = 'c';
-  } else if (this.id === 'glasses') {
-    f = 'g';
-  } else if (this.id === 'alcoholic') {
-    f = 'a';
-  }
-  fetchByFilter(f);
-})
 
 function randomCoctails() {
   fetch('http://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -186,7 +187,6 @@ function randomCoctails() {
 }
 
 function giveMeACoctail() {
-  anotherDrink = 0;
   if (anotherDrink < 5) {
     $('#slide-out').append(
       `<li class="recommended truncate" id="${selectedFilter[0].strDrink}"><i class="material-icons">local_bar</i><p class="recommendedLinks">${selectedFilter[0].strDrink}</p></li>`
@@ -200,7 +200,6 @@ function giveMeACoctail() {
   })
 }
 
-
 function fetchSelectedFilter(filter, strSelected) {
   fetch(`http://www.thecocktaildb.com/api/json/v1/1/filter.php?${filter}=${strSelected}`)
     .then((response) => {
@@ -209,8 +208,7 @@ function fetchSelectedFilter(filter, strSelected) {
     .then((data) => {
       selectFilter = data.drinks;
       console.log(data);
-      renderCocktails()
-
+      renderCocktails();
     })
 }
 
@@ -219,18 +217,18 @@ function searchByFilter(filter) {
   if (filter === 'c') {
     for (let i = 0; i < selectFilter.length; i++) {
       $('.dropdown-content').append(
-        `<li class ="strSelect" id="${selectFilter[i].strCategory}"><a href="#!">${selectFilter[i].strCategory}</a></li>`)
+        `<li class ="strSelect" id="${selectFilter[i].strCategory}"><a href="#!">${selectFilter[i].strCategory}</a></li>`);
     }
   } else if (filter === 'g') {
     for (let i = 0; i < selectFilter.length; i++) {
       $('.dropdown-content').append(
-        `<li class ="strSelect" id="${selectFilter[i].strGlass}"><a href="#!">${selectFilter[i].strGlass}</a></li>`)
+        `<li class ="strSelect" id="${selectFilter[i].strGlass}"><a href="#!">${selectFilter[i].strGlass}</a></li>`);
     }
   } else if (filter === 'a') {
     for (let i = 0; i < selectFilter.length; i++) {
-      if(selectFilter[i].strAlcoholic !== null) {
+      if (selectFilter[i].strAlcoholic !== null) {
         $('.dropdown-content').append(
-          `<li class ="strSelect" id="${selectFilter[i].strAlcoholic}"><a href="#!">${selectFilter[i].strAlcoholic}</a></li>`)
+          `<li class ="strSelect" id="${selectFilter[i].strAlcoholic}"><a href="#!">${selectFilter[i].strAlcoholic}</a></li>`);
       }
     }
   }
@@ -248,7 +246,7 @@ function fetchCocktailSelected(cocktailSelected) {
     })
     .then((data) => {
       selectFilter = data.drinks[0];
-      cocktailRecipe(cocktailSelected)
+      cocktailRecipe(cocktailSelected);
     })
     .catch((error) => {
       console.log('Hubo un problema con la operación: ' + error.message);
@@ -260,7 +258,7 @@ function renderCocktails() {
   for (let i = 0; i < selectFilter.length; i++) {
     $('#cocktail').append(`<div class="col l3 card"  id="${selectFilter[i].idDrink}">
 	<div class="card-image waves-effect waves-block waves-light">
-		<img class="activator" src="https://${selectFilter[i].strDrinkThumb}"/>
+		<img class="activator" src="${selectFilter[i].strDrinkThumb}"/>
 	</div><div class="card-content">
 		<span class="card-title activator grey-text text-darken-4"><p class="drink-name truncate">${selectFilter[i].strDrink}</p><i class="material-icons right">more_vert</i></span>
 	</div>
@@ -290,5 +288,24 @@ function cocktailRecipe(cocktailSelected) {
   for (let i = 0; i < ingredient.length; ++i) {
     html += `<li>${ingredient[i]}</li>`;
   }
-  $(`.card-reveal.${cocktailSelected}`).append(`<div class="cocktailDescription ${cocktailSelected}"><h4>Ingredients</h4><ul>${html}</ul><h4>Instruction</h4><p>${selectFilter.strInstructions}</p></div>`)
+  $(`.card-reveal.${cocktailSelected}`).append(`<div class="cocktailDescription ${cocktailSelected}"><h4>Ingredients</h4><ul>${html}</ul><h4>Instruction</h4><p>${selectFilter.strInstructions}</p></div>`);
+}
+
+function stop() {
+  $('.recommended').remove();
+  $('#cocktail').empty();
+  $('#cocktail').append(`<div class="background">
+    <div class="welcome-text center valign-wrapper">
+      <h3>Welcome to <b>Let's Drink</b>! Look for a drink searching by it's name, taking one of our recommended or exploring in our filters. <b>Enjoy</b> with responsability.</h3>
+    </div>
+  </div>`);
+  anotherDrink = 0;
+  $('.modal').modal('open');
+  $('a[type="button"]').attr('disabled', 'disabled');
+  $(':enabled').keypress(function() {
+    if (($('#emailLogin').val() !== '' && $('#passwordLogin').val() !== '') || ($('#emailRegister').val() !== '' && $('#passwordRegister').val() !== '')) {
+      $('a[type="button"]').removeAttr('disabled');
+      $('.btn-form').addClass('modal-close');
+    }
+  })
 }
