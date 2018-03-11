@@ -141,7 +141,7 @@ function fetchByFilter(filter) {
     });
 }
 
-$('.filtro').mouseover(function() {
+$('.filtro').click(function() {
   let f;
   if (this.id === 'categories') {
     f = 'c';
